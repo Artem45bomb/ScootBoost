@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_profile_item">Профиль</string>
+    <string name="settings_about_us_item">О нас</string>
+    <string name="settings_item">Настройки</string>
+    <string name="sign_btn_register">Зарегистрироваться</string>
+    <string name="sign_btn_signin">Войти</string>
+</resources>
