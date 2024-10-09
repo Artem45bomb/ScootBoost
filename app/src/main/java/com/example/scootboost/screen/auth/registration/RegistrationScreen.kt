@@ -1,4 +1,4 @@
-package com.example.scootboost.screen.auth
+package com.example.scootboost.screen.auth.registration
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,11 +12,11 @@ import com.example.scootboost.component.FormInput
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
 
-@Router(route = "login")
-class LoginRouter: RouterType
+@Router(route = "registration")
+class RegistrationRouter: RouterType
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun RegistrationScreen(navController: NavController) {
     var email by rememberSaveable {
         mutableStateOf("")
     }
