@@ -7,6 +7,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,7 +29,8 @@ private fun BtnSize(onClick:() -> Unit,modifier: Modifier = Modifier,children:@C
         modifier = modifier
             .width(74.dp)
             .height(74.dp)
-            .clip(CircleShape)) {
+            .clip(CircleShape)
+    ) {
         children()
     }
 }

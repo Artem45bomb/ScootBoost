@@ -4,19 +4,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.scootboost.component.FormInput
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.scootboost.routes.House
+import com.example.scootboost.routes.RoutesController
+import com.example.scootboost.routes.routesAll
+import com.example.scootboost.ui.menu.Menu
 import com.example.scootboost.ui.theme.ScootBoostTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,13 +34,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
+
             ScootBoostTheme {
                 ProvideTextStyle(value = MaterialTheme.typography.bodyMedium) {
                     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier.padding(innerPadding)
-                        )
+                        RoutesController(navController = navController,Modifier.padding(innerPadding))
                     }
                 }
             }
@@ -40,12 +49,17 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    var text by rememberSaveable {
-        mutableStateOf("")
+    var visible by remember {
+        mutableStateOf(false)
     }
-    val inputString = "Check if this string contains only English characters"
-    val englishRegex = Regex("^[a-zA-Z]+$")
-    FormInput(value = text ,placeholder = "Name", onChangeValue = {text=it}, errorCheck = englishRegex , errorValue = inputString)
+
+
+    Column {
+        Button(onClick = { visible = !visible }) {
+            Text("click")
+        }
+        Menu(modifier = Modifier.width(171.dp),visible)
+    }
 }
 
 @Preview(showBackground = true)

@@ -24,9 +24,13 @@ fun MenuItem(textItem:String,
         shape = RoundedCornerShape(0.dp),
         colors = ButtonDefaults
             .buttonColors()
-            .copy(containerColor = colorResource(R.color.blue_light)),
+            .copy(
+                containerColor = colorResource(R.color.blue_light),
+
+            ),
         modifier = modifier
             .padding(0.dp)
+
     ) {
         Row(
             horizontalArrangement = Arrangement.Center,

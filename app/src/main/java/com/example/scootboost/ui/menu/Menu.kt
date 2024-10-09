@@ -1,5 +1,10 @@
 package com.example.scootboost.ui.menu
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,16 +20,30 @@ import com.example.scootboost.R
 
 
 @Composable
- fun Menu(modifier: Modifier = Modifier) {
-    Column(modifier = modifier
-        .width(171.dp)
-        .clip(RoundedCornerShape(bottomEnd = 20.dp)))
-    {
-        MenuItem(textItem = stringResource(R.string.settings_profile_item),onClick = { /*TODO*/ })
-        HorizontalDivider(color = colorResource(R.color.blue_dark), thickness = 1.dp)
-        MenuItem(textItem = stringResource(R.string.settings_about_us_item), onClick = { /*TODO*/ })
-        HorizontalDivider(color = colorResource(R.color.blue_dark), thickness = 1.dp)
-        MenuItem(textItem = stringResource(R.string.settings_item), onClick = { /*TODO*/ })
+ fun Menu(modifier: Modifier = Modifier,visible:Boolean = true) {
+    AnimatedVisibility(
+        visible,
+        enter = slideInVertically(
+            animationSpec = tween(durationMillis = 150, easing = LinearOutSlowInEasing)
+        ){
+            fullHeight -> -fullHeight
+        },
+        exit = slideOutVertically(
+            animationSpec = tween(durationMillis = 250, easing = LinearOutSlowInEasing)
+        ){
+            fullHeight -> -fullHeight
+        }
+    ) {
+        Column(modifier = modifier
+            .width(171.dp)
+            .clip(RoundedCornerShape(bottomEnd = 20.dp)))
+        {
+            MenuItem(textItem = stringResource(R.string.settings_profile_item),onClick = { /*TODO*/ })
+            HorizontalDivider(color = colorResource(R.color.blue_dark), thickness = 1.dp)
+            MenuItem(textItem = stringResource(R.string.settings_about_us_item), onClick = { /*TODO*/ })
+            HorizontalDivider(color = colorResource(R.color.blue_dark), thickness = 1.dp)
+            MenuItem(textItem = stringResource(R.string.settings_item), onClick = { /*TODO*/ })
+        }
     }
 }
 
@@ -32,5 +51,6 @@ import com.example.scootboost.R
 @Preview(showSystemUi = true)
 @Composable
 private fun MenuPreview() {
+
     Menu(modifier =Modifier.width(171.dp))
 }
