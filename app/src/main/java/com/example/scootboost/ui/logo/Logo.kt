@@ -12,3 +12,9 @@ import com.example.scootboost.R
 fun Logo(modifier: Modifier = Modifier) {
     Image(painter = painterResource(R.drawable.logo), contentDescription ="logo",modifier.aspectRatio(1/1f))
 }
+
+
+@Composable
+fun LogoAuth(modifier: Modifier = Modifier) {
+    Image(painter = painterResource(R.drawable.ic_auth), contentDescription ="logo",modifier.aspectRatio(1/1f))
+}

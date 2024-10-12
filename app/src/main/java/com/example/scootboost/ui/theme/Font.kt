@@ -11,3 +11,10 @@ val Modak = FontFamily(
         weight = FontWeight.Normal
     )
 )
+
+val Play = FontFamily(
+    Font(
+        R.font.play,
+        weight = FontWeight.Normal
+    )
+)

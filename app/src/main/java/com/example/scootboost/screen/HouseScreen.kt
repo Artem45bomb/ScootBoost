@@ -6,28 +6,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.scootboost.R
@@ -59,7 +48,7 @@ fun HouseScreen(navController: NavHostController, modifier: Modifier = Modifier)
                 .fillMaxSize()
         ) {
             Spacer(Modifier.height(0.dp))
-            Column{
+            Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()){
                 with(MaterialTheme) {
                     Text(
                         text = "ScootBoost ®",
@@ -70,7 +59,7 @@ fun HouseScreen(navController: NavHostController, modifier: Modifier = Modifier)
                     )
                 }
                 Logo(Modifier
-                    .fillMaxWidth(0.65f)
+                    .fillMaxWidth(0.69f)
                     .border(1.dp,MaterialTheme.colorScheme.secondary, CircleShape)
                 )
             }
@@ -78,7 +67,7 @@ fun HouseScreen(navController: NavHostController, modifier: Modifier = Modifier)
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(20.dp),
-                modifier = Modifier.fillMaxWidth(0.65f)
+                modifier = Modifier.fillMaxWidth(0.69f)
             ) {
                 BtnLight(text = "Войти") {
                     navController.navigateSingleTopTo(Login.route)
@@ -89,7 +78,6 @@ fun HouseScreen(navController: NavHostController, modifier: Modifier = Modifier)
                 BtnLight(text = "Продолжить без входа") {
                     //navController.navigateSingleTopTo()
                 }
-
             }
 
         }

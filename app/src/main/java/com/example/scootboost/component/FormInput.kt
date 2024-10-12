@@ -16,8 +16,10 @@ import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,11 +39,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.scootboost.R
 import com.example.scootboost.component.custom.Input
+import com.example.scootboost.ui.theme.None
 import com.example.scootboost.ui.theme.base20Light
 import com.example.scootboost.ui.theme.baseRed
 
 
-@Composable fun FormInput(
+@Composable
+fun FormInput(
     modifier: Modifier = Modifier,
     value:String,
     placeholder: String = "",
@@ -49,6 +53,7 @@ import com.example.scootboost.ui.theme.baseRed
     onChangeValue:(String) -> Unit,
     errorCheck:Regex? = null,
     errorValue: String = "",
+    textInfo:String = ""
 ) {
     var error by remember {
         mutableStateOf("")
@@ -57,8 +62,8 @@ import com.example.scootboost.ui.theme.baseRed
     var isShow by remember {
         mutableStateOf(true)
     }
-    
-    val clickEye:() -> Unit = { 
+
+    val clickEye:() -> Unit = {
         isShow = !isShow
     }
 
@@ -67,14 +72,18 @@ import com.example.scootboost.ui.theme.baseRed
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .clip(MaterialTheme.shapes.medium)
+                .fillMaxWidth()
                 .background(Color.Unspecified)
-                .border(1.dp,MaterialTheme.colorScheme.secondary, shape = MaterialTheme.shapes.medium)
+                .border(
+                    1.dp,
+                    MaterialTheme.colorScheme.secondary,
+                    shape = MaterialTheme.shapes.medium
+                )
         ) {
             Input(
                 value = value,
                 textStyle = TextStyle(color = Color.Black),
                 onValueChange ={
-
                     error = if(errorCheck != null && it.matches(errorCheck)) "" else errorValue
                     onChangeValue(it)
                 },
@@ -83,23 +92,30 @@ import com.example.scootboost.ui.theme.baseRed
                     else -> VisualTransformation.None
                 },
                 colors = OutlinedTextFieldDefaults.colors(
-
                     selectionColors = TextSelectionColors(
                         backgroundColor = MaterialTheme.colorScheme.primary,
                         handleColor = Color.Red
                     ),
-                    focusedBorderColor = MaterialTheme.colorScheme.primary,
-                    unfocusedBorderColor = MaterialTheme.colorScheme.primary,
-
+                    focusedBorderColor = None,
+                    unfocusedBorderColor= None,
+                    disabledBorderColor = None,
+                    errorBorderColor = None,
+                    focusedLeadingIconColor = None,
+                    unfocusedLeadingIconColor = None,
+                    focusedTrailingIconColor = None,
+                    unfocusedTrailingIconColor = None,
                 ),
                 singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardOptions = KeyboardOptions(keyboardType =when(type){
+                   "phone" -> KeyboardType.Phone
+                   else ->  KeyboardType.Password
+                }),
                 placeholder = {Text(placeholder, style = base20Light)},
                 contentPadding = PaddingValues(horizontal = 15.dp),
                 modifier = Modifier
                     .height(41.dp)
                     .clip(MaterialTheme.shapes.medium)
-                    .fillMaxWidth(0.8f)
+                    .weight(1f)
 
             )
             if(type == "password") {
@@ -111,24 +127,28 @@ import com.example.scootboost.ui.theme.baseRed
                     when (isShow) {
                         true -> Icon(
                             painter = painterResource(R.drawable.hide), contentDescription = "hide password",
-                            modifier = Modifier.width(24.dp)
                         )
                         false -> Icon(painter = painterResource(R.drawable.eye), contentDescription ="show password",
                             modifier = Modifier.width(24.dp))
                     }
                 }
-                Spacer(modifier = Modifier
-                    .height(7.dp)
-                    .width(7.dp))
             }
+            Spacer(modifier = Modifier.width(7.dp))
         }
+        if(textInfo != "")
+            Text(textInfo,
+                style = MaterialTheme.typography.labelSmall.copy(MaterialTheme.colorScheme.secondary),
+                modifier =  Modifier.padding(top = 4.dp, start = 15.dp)
+            )
         if(error != "")
             Text(error,
                 style = baseRed,
-                modifier =  Modifier.padding(top = 4.dp, start = 4.dp)
+                modifier =  Modifier.padding(top = 4.dp, start = 15.dp)
             )
     }
 }
+
+
 
 
 @Preview(showSystemUi = true)
@@ -139,6 +159,5 @@ private fun PFormInput() {
     }
     val inputString = "Check if this string contains only English characters"
     val englishRegex = Regex("^[a-zA-Z]+$")
-    val errorMap = mapOf(englishRegex to inputString)
-    FormInput(value = text, placeholder = "Hi", onChangeValue = {text=it}, errorCheck = englishRegex , errorValue = inputString)
+    FormInput(value = text, placeholder = "Hi", type = "password", onChangeValue = {text=it}, errorCheck = englishRegex , errorValue = inputString)
 }

@@ -1,8 +1,14 @@
 package com.example.scootboost.ui.btn
 
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -10,13 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.scootboost.ui.theme.ScootBoostTheme
 
 
 @Composable
-fun BtnBase(modifier: Modifier = Modifier,text:String,colorText:Color,colorButton:Color,onClick:() -> Unit) {
+fun BtnBase(modifier: Modifier = Modifier, text:String, colorText:Color, colorButton:Color, onClick:() -> Unit) {
     TextButton(
         colors = ButtonDefaults.buttonColors(containerColor = colorButton),
         onClick = onClick,
@@ -24,7 +32,20 @@ fun BtnBase(modifier: Modifier = Modifier,text:String,colorText:Color,colorButto
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.medium)
     ) {
-        Text(text = text, style = MaterialTheme.typography.displayLarge.copy(color = colorText))
+        Text(text = text, style = MaterialTheme.typography.displayLarge.copy(color = colorText), textAlign = TextAlign.Center)
+    }
+}
+
+@Composable
+fun BtnIcon(modifier: Modifier = Modifier,@DrawableRes id:Int,description:String, colorButton:Color, onClick:() -> Unit) {
+    Button(
+        colors = ButtonDefaults.buttonColors(containerColor = colorButton),
+        onClick = onClick,
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(MaterialTheme.shapes.medium)
+    ) {
+        Icon(painterResource(id),description,modifier)
     }
 }
 
