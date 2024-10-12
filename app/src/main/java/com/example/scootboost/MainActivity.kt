@@ -23,9 +23,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.scootboost.data.navigateSingleTopTo
 import com.example.scootboost.routes.House
+import com.example.scootboost.routes.RouteBase
 import com.example.scootboost.routes.RoutesController
 import com.example.scootboost.routes.routesAll
+import com.example.scootboost.ui.footer.BottomBar
+import com.example.scootboost.ui.header.TopBar
 import com.example.scootboost.ui.menu.Menu
 import com.example.scootboost.ui.theme.ScootBoostTheme
 
@@ -35,10 +39,20 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
+            val currentBackStack by navController.currentBackStackEntryAsState()
+            val currentDestination = currentBackStack?.destination
+
+            // Change the variable to this and use Overview as a backup screen if this returns null
+            val currentScreen = routesAll.find{ it.route == currentDestination?.route } ?: House
+
 
             ScootBoostTheme {
                 ProvideTextStyle(value = MaterialTheme.typography.bodyMedium) {
-                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Scaffold(
+                        topBar ={TopBar(navController = navController, currentScreen = currentScreen)},
+                        bottomBar = { BottomBar(navController=navController,currentScreen=currentScreen) },
+                        modifier = Modifier.fillMaxSize()
+                    ) { innerPadding ->
                         RoutesController(navController = navController,Modifier.padding(innerPadding))
                     }
                 }

@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="hide" />
-                            <entry key="sourceFile" value="D:\Iconex\Iconex\Light\Hide.svg" />
+                            <entry key="outputName" value="ic_menu" />
+                            <entry key="sourceFile" value="D:\Android\svg_import\Shape (4).svg" />
                           </map>
                         </option>
                       </PersistentState>

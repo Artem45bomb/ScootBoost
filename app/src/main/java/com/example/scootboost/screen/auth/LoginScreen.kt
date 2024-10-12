@@ -12,7 +12,7 @@ import com.example.scootboost.component.FormInput
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
 
-@Router(route = "login")
+@Router(route = "login",groupId = ["auth"])
 class LoginRouter: RouterType
 
 @Composable

@@ -20,7 +20,6 @@ private val LightColorScheme = lightColorScheme(
     tertiary = Light_green,
     background = Color.White
     /* Other default colors to override
-
     surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
     onSecondary = Color.White,
@@ -49,5 +48,6 @@ fun ScootBoostTheme(
         colorScheme = colorScheme,
         typography = Typography,
         content = content,
+        shapes = ScootShapes
     )
 }
