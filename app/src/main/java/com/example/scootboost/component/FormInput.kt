@@ -66,9 +66,9 @@ import com.example.scootboost.ui.theme.baseRed
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .clip(RoundedCornerShape(20.dp))
+                .clip(MaterialTheme.shapes.medium)
                 .background(Color.Unspecified)
-                .border(1.dp,MaterialTheme.colorScheme.secondary, shape = RoundedCornerShape(20.dp))
+                .border(1.dp,MaterialTheme.colorScheme.secondary, shape = MaterialTheme.shapes.medium)
         ) {
             Input(
                 value = value,
@@ -98,7 +98,7 @@ import com.example.scootboost.ui.theme.baseRed
                 contentPadding = PaddingValues(horizontal = 15.dp),
                 modifier = Modifier
                     .height(41.dp)
-                    .clip(RoundedCornerShape(20.dp))
+                    .clip(MaterialTheme.shapes.medium)
                     .fillMaxWidth(0.8f)
 
             )
