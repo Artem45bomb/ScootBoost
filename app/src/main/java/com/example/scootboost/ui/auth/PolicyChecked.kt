@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun PolicyChecked(value:Boolean,onChange:(Boolean) -> Unit,modifier: Modifier = Modifier) {
-    Row (verticalAlignment = Alignment.CenterVertically){
+    Row (verticalAlignment = Alignment.CenterVertically, modifier = modifier){
         with(MaterialTheme) {
             Checkbox(
                 checked = value,

@@ -2,12 +2,9 @@ package com.example.scootboost.screen.auth.registration
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,12 +14,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.scootboost.R
 import com.example.scootboost.component.FormInput
+import com.example.scootboost.routes.RouteBase
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
 import com.example.scootboost.ui.auth.PolicyChecked
@@ -35,7 +32,7 @@ import com.example.scootboost.ui.logo.LogoAuth
 class RegistrationRouter: RouterType
 
 @Composable
-fun RegistrationScreen(navController: NavController) {
+fun RegistrationScreen(navController: NavHostController,currentScreen:RouteBase) {
     var email by rememberSaveable {
         mutableStateOf("")
     }
@@ -52,7 +49,7 @@ fun RegistrationScreen(navController: NavController) {
         mutableStateOf(true)
     }
 
-
+    //ScrollableColumn
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -68,7 +65,7 @@ fun RegistrationScreen(navController: NavController) {
                 style=MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.secondary),
                 textAlign = TextAlign.Center
             )
-            BtnNav()
+            BtnNav(navController= navController, currentRoute = currentScreen.route)
         }
         LogoAuth(Modifier.width(90.dp))
         Column(verticalArrangement =Arrangement.spacedBy(10.dp)){

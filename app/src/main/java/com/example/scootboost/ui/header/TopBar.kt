@@ -17,7 +17,7 @@ fun TopBar(modifier: Modifier = Modifier,currentScreen:RouteBase,navController: 
     val navClick:(RouteBase) -> Unit = {navController.navigateSingleTopTo(it.route)}
 
     when(currentScreen.groupId){
-        else -> HeaderMain(modifier,navClick)
+        else -> HeaderMain(modifier, onNavigation = navClick)
     }
 }
 

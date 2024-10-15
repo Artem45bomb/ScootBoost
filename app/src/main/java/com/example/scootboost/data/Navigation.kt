@@ -1,15 +1,19 @@
 package com.example.scootboost.data
 
+import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
 
 fun NavHostController.navigateSingleTopTo(route:String){
     this.navigate(route){
-//        popUpTo(route = this@navigateSingleTopTo.graph.findStartDestination().id){
-//            saveState = true
-//        }
+        popUpTo(
+            this@navigateSingleTopTo.graph.findStartDestination().id
+        ) {
+            saveState = true
+        }
         launchSingleTop = true
-        //restoreState = true
+        restoreState = true
     }
 }
+

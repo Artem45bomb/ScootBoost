@@ -10,19 +10,28 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.scootboost.R
+import com.example.scootboost.data.MenuActive
+import com.example.scootboost.routes.RouteBase
 
 
 @Composable
- fun Menu(modifier: Modifier = Modifier,visible:Boolean = true) {
+ fun Menu(modifier: Modifier = Modifier,currentScreen:RouteBase,menuActive: MenuActive = viewModel()) {
+
+    LaunchedEffect(key1 = currentScreen) {
+        menuActive.setValue(false)
+    }
+
     AnimatedVisibility(
-        visible,
+        menuActive.visible.value,
         enter = slideInVertically(
             animationSpec = tween(durationMillis = 150, easing = LinearOutSlowInEasing)
         ){
@@ -52,5 +61,5 @@ import com.example.scootboost.R
 @Composable
 private fun MenuPreview() {
 
-    Menu(modifier =Modifier.width(171.dp))
+    //Menu(modifier =Modifier.width(171.dp))
 }

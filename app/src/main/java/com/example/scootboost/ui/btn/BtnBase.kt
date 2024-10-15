@@ -2,6 +2,7 @@ package com.example.scootboost.ui.btn
 
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
@@ -45,7 +46,7 @@ fun BtnIcon(modifier: Modifier = Modifier,@DrawableRes id:Int,description:String
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.medium)
     ) {
-        Icon(painterResource(id),description,modifier)
+        Image(painter = painterResource(id),description,modifier)
     }
 }
 

@@ -1,19 +1,29 @@
 package com.example.scootboost.routes.auth.registration
 
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.example.scootboost.config.NavigationConfig
 import com.example.scootboost.routes.Registration
 import com.example.scootboost.routes.RegistrationCompany
+import com.example.scootboost.routes.RouteBase
 import com.example.scootboost.screen.auth.registration.RegistrationScreen
 import com.example.scootboost.screen.auth.registration.company.CompanyScreen
 
 
-fun NavGraphBuilder.registration(navController: NavController){
-    composable(Registration.route){
-        RegistrationScreen(navController = navController)
+fun NavGraphBuilder.registration(navController: NavHostController, currentScreen: RouteBase) {
+    composable(
+        route = Registration.route,
+        enterTransition = {NavigationConfig.fadeIn},
+        exitTransition = {NavigationConfig.fadeOut}
+    ) {
+        RegistrationScreen(navController = navController, currentScreen)
     }
-    composable(RegistrationCompany.route){
-        CompanyScreen(navController = navController)
+    composable(
+        route = RegistrationCompany.route,
+        enterTransition = {NavigationConfig.fadeIn},
+        exitTransition = {NavigationConfig.fadeOut}
+    ) {
+        CompanyScreen(navController = navController, currentScreen)
     }
 }
