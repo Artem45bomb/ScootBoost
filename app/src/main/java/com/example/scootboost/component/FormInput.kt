@@ -74,15 +74,13 @@ fun FormInput(
                 .clip(MaterialTheme.shapes.medium)
                 .fillMaxWidth()
                 .background(Color.Unspecified)
-                .border(
-                    1.dp,
+                .border(1.dp,
                     MaterialTheme.colorScheme.secondary,
-                    shape = MaterialTheme.shapes.medium
-                )
+                    shape = MaterialTheme.shapes.medium)
         ) {
             Input(
                 value = value,
-                textStyle = TextStyle(color = Color.Black),
+                textStyle = MaterialTheme.typography.displayLarge.copy(color = Color.Black),
                 onValueChange ={
                     error = if(errorCheck != null && it.matches(errorCheck)) "" else errorValue
                     onChangeValue(it)

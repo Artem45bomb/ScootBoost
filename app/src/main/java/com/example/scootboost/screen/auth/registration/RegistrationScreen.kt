@@ -1,15 +1,15 @@
 package com.example.scootboost.screen.auth.registration
 
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +19,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -33,8 +34,10 @@ import com.example.scootboost.ui.btn.BtnBlack
 import com.example.scootboost.ui.btn.BtnIcon
 import com.example.scootboost.ui.logo.LogoAuth
 
+
 @Router(route = "registration",groupId = ["auth"])
 class RegistrationRouter: RouterType
+
 
 @Composable
 fun RegistrationScreen(navController: NavHostController,currentScreen:RouteBase) {
@@ -61,8 +64,11 @@ fun RegistrationScreen(navController: NavHostController,currentScreen:RouteBase)
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .fillMaxSize()
-            .padding(vertical = 20.dp, horizontal = 30.dp)
+            .padding(vertical = 48.dp, horizontal = 30.dp)
     ) {
+        IconButton(onClick = {navController.popBackStack()},Modifier.align(Alignment.Start)) {
+            Icon(painterResource(id = R.drawable.back),"back icon", tint = MaterialTheme.colorScheme.secondary)
+        }
         Column(
             verticalArrangement = Arrangement.spacedBy(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -82,10 +88,19 @@ fun RegistrationScreen(navController: NavHostController,currentScreen:RouteBase)
             PolicyChecked(value =checkPolicy, onChange ={checkPolicy=it})
         }
         BtnBlack(text = "Продолжить") {
-            
         }
-        BtnIcon(id = R.drawable.google_logo, description = "google icon", colorButton =MaterialTheme.colorScheme.primary) {
-
+        Column {
+            Text(
+                text = "Или присоединяйтесь с помощью:",
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 10.dp)
+            )
+            BtnIcon(id = R.drawable.google_logo, description = "google icon", colorButton =MaterialTheme.colorScheme.primary) {
+            }
         }
+        
     }
 }

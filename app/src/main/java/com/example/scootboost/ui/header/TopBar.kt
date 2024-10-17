@@ -1,14 +1,10 @@
 package com.example.scootboost.ui.header
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.scootboost.data.navigateSingleTopTo
-import com.example.scootboost.routes.House
 import com.example.scootboost.routes.RouteBase
-import com.example.scootboost.routes.routesAll
 import com.example.scootboost.ui.header.user.HeaderMain
 
 

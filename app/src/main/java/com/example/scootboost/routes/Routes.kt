@@ -51,7 +51,7 @@ val Registration = createRoute<RegistrationRouter>()
 val RegistrationCompany = createRoute<CompanyRouter>()
 
 
-val routesAll = listOf(
+internal val routesAll = listOf(
     House,
     Registration,
     Login,

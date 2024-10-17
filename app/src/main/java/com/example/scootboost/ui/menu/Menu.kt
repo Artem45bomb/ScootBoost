@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.scootboost.R
-import com.example.scootboost.data.MenuActive
+import com.example.scootboost.data.view.MenuActive
 import com.example.scootboost.routes.RouteBase
 
 

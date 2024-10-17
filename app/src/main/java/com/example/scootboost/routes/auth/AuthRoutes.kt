@@ -11,7 +11,7 @@ import com.example.scootboost.screen.auth.LoginScreen
 
 fun NavGraphBuilder.authRoutes(navController:NavHostController, currentScreen:RouteBase) {
         composable(Login.route) {
-            LoginScreen(navController)
+            LoginScreen(navController = navController, currentScreen =  currentScreen)
         }
         registration(navController,currentScreen)
 } 

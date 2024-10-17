@@ -23,7 +23,7 @@ fun PolicyChecked(value:Boolean,onChange:(Boolean) -> Unit,modifier: Modifier = 
             )
             Text(
                 text = "Ознакомлен с политикой конфиденциальности",
-                style = typography.labelSmall.copy(colorScheme.primary)
+                style = typography.labelSmall.copy(colorScheme.secondary)
             )
         }
     }

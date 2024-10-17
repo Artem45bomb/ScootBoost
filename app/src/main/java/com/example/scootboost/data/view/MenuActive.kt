@@ -1,4 +1,4 @@
-package com.example.scootboost.data
+package com.example.scootboost.data.view
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
