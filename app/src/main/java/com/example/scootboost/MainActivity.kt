@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                         topBar ={TopBar(navController = navController, currentScreen = currentScreen)},
                         modifier = Modifier.fillMaxSize()
                     ) { innerPadding ->
-                        RoutesController(navController = navController,currentScreen = currentScreen,Modifier.padding(innerPadding))
+                        RoutesController(navController = navController,currentScreen = currentScreen, modifier =  Modifier.padding(innerPadding))
                     }
                 }
             }

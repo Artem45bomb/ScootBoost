@@ -65,13 +65,12 @@ fun LoginScreen(modifier: Modifier = Modifier,navController: NavHostController,c
                     style= MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.secondary),
                     textAlign = TextAlign.Center
                 )
-                BtnNav(navController= navController, currentRoute = currentScreen.route)
             }
             Column(verticalArrangement =Arrangement.spacedBy(10.dp)){
                 FormInput(value = email, onChangeValue = {email = it}, placeholder = "Email")
                 FormInput(value = password, onChangeValue = {password = it}, type = "password", placeholder = "Пароль")
             }
-            BtnBlack(text = "Продолжить") {
+            BtnBlack(text = "Войти") {
             }
             Text(text = "Забыли пароль", textDecoration = TextDecoration.Underline)
         }

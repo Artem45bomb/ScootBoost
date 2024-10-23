@@ -13,6 +13,7 @@ fun TopBar(modifier: Modifier = Modifier,currentScreen:RouteBase,navController: 
     val navClick:(RouteBase) -> Unit = {navController.navigateSingleTopTo(it.route)}
 
     when(currentScreen.groupId){
+        listOf("auth") -> HeaderMain(modifier, isShowMenu = false ,onNavigation = navClick)
         else -> HeaderMain(modifier, onNavigation = navClick)
     }
 }

@@ -25,8 +25,9 @@ import com.example.scootboost.ui.theme.ScootBoostTheme
 
 
 @Composable
-fun BtnBase(modifier: Modifier = Modifier, text:String, colorText:Color, colorButton:Color, onClick:() -> Unit) {
+fun BtnBase(modifier: Modifier = Modifier,enabled:Boolean = true,text:String, colorText:Color, colorButton:Color, onClick:() -> Unit) {
     TextButton(
+        enabled = enabled,
         colors = ButtonDefaults.buttonColors(containerColor = colorButton),
         onClick = onClick,
         modifier = modifier
@@ -38,8 +39,9 @@ fun BtnBase(modifier: Modifier = Modifier, text:String, colorText:Color, colorBu
 }
 
 @Composable
-fun BtnIcon(modifier: Modifier = Modifier,@DrawableRes id:Int,description:String, colorButton:Color, onClick:() -> Unit) {
+fun BtnIcon(modifier: Modifier = Modifier,enabled: Boolean = true,@DrawableRes id:Int,description:String, colorButton:Color, onClick:() -> Unit) {
     Button(
+        enabled = enabled,
         colors = ButtonDefaults.buttonColors(containerColor = colorButton),
         onClick = onClick,
         modifier = modifier
@@ -51,16 +53,16 @@ fun BtnIcon(modifier: Modifier = Modifier,@DrawableRes id:Int,description:String
 }
 
 @Composable
-fun BtnLight(modifier: Modifier = Modifier,text:String,onClick:() -> Unit) {
+fun BtnLight(modifier: Modifier = Modifier,text:String,enabled: Boolean = true,onClick:() -> Unit) {
     with(MaterialTheme.colorScheme) {
-        BtnBase(modifier, text = text, colorText =secondary, colorButton = primary, onClick = onClick)
+        BtnBase(modifier,enabled = enabled, text = text, colorText =secondary, colorButton = primary, onClick = onClick)
     }
 }
 
 @Composable
-fun BtnBlack(modifier: Modifier = Modifier,text:String,onClick:() -> Unit) {
+fun BtnBlack(modifier: Modifier = Modifier,enabled: Boolean = true,text:String,onClick:() -> Unit) {
     with(MaterialTheme.colorScheme) {
-        BtnBase(modifier, text = text, colorText =primary, colorButton = secondary, onClick = onClick)
+        BtnBase(modifier,enabled = enabled ,text = text, colorText =primary, colorButton = secondary, onClick = onClick)
     }
 }
 

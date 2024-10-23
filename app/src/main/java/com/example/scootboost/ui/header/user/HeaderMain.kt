@@ -25,7 +25,7 @@ import com.example.scootboost.ui.theme.ScootBoostTheme
 
 
 @Composable
-fun HeaderMain(modifier: Modifier = Modifier, menuActive: MenuActive = viewModel(), onNavigation:(RouteBase) -> Unit) {
+fun HeaderMain(modifier: Modifier = Modifier, menuActive: MenuActive = viewModel(),isShowMenu:Boolean = true ,onNavigation:(RouteBase) -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -40,11 +40,14 @@ fun HeaderMain(modifier: Modifier = Modifier, menuActive: MenuActive = viewModel
                 .height(30.dp)
                 .aspectRatio(1 / 1f)
             )
-            IconButton(onClick = {menuActive.setValue(!menuActive.visible.value)}){
-                Icon(painter = painterResource(R.drawable.ic_menu),
-                contentDescription = "menu icon",
-                    tint = MaterialTheme.colorScheme.primary
-                )
+            if(isShowMenu) {
+                IconButton(onClick = { menuActive.setValue(!menuActive.visible.value) }) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_menu),
+                        contentDescription = "menu icon",
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
             }
         }
 

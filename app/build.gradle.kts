@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
 }
 
@@ -60,7 +61,6 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
     implementation(libs.androidx.fragment.ktx)
-
     implementation(libs.converter.gson)
     implementation(libs.retrofit)
     implementation(libs.kotlin.reflect)

@@ -1,5 +1,6 @@
 package com.example.scootboost.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -121,12 +122,13 @@ fun FormInput(
                     onClick = clickEye,
                     modifier = Modifier
                         .width(24.dp)
+                        .height(24.dp)
                 ) {
                     when (isShow) {
-                        true -> Icon(
+                        true -> Image(
                             painter = painterResource(R.drawable.hide), contentDescription = "hide password",
                         )
-                        false -> Icon(painter = painterResource(R.drawable.eye), contentDescription ="show password",
+                        false -> Image(painter = painterResource(R.drawable.eye), contentDescription ="show password",
                             modifier = Modifier.width(24.dp))
                     }
                 }

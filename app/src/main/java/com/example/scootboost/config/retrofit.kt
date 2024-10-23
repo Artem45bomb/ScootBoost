@@ -1,4 +1,4 @@
-package com.example.scootboost.data
+package com.example.scootboost.config
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

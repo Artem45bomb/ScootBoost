@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ScootBoost</string>
+    <string name="app_name" translatable="false">ScootBoost</string>
     <string name="settings_profile_item">Profile</string>
     <string name="settings_about_us_item">About us</string>
     <string name="settings_item">Settings</string>

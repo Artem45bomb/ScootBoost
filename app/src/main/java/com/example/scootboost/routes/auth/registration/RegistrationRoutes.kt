@@ -7,7 +7,9 @@ import com.example.scootboost.config.NavigationConfig
 import com.example.scootboost.routes.Registration
 import com.example.scootboost.routes.RegistrationCompany
 import com.example.scootboost.routes.RouteBase
+import com.example.scootboost.routes.SendCode
 import com.example.scootboost.screen.auth.registration.RegistrationScreen
+import com.example.scootboost.screen.auth.registration.code.SendCodeScreen
 import com.example.scootboost.screen.auth.registration.company.CompanyScreen
 
 
@@ -18,6 +20,11 @@ fun NavGraphBuilder.registration(navController: NavHostController, currentScreen
         exitTransition = {NavigationConfig.fadeOut}
     ) {
         RegistrationScreen(navController = navController, currentScreen)
+    }
+    composable(
+        route = SendCode.route
+    ){
+        SendCodeScreen(navController = navController, currentScreen = currentScreen)
     }
     composable(
         route = RegistrationCompany.route,

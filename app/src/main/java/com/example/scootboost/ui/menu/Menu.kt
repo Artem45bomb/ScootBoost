@@ -26,7 +26,7 @@ import com.example.scootboost.routes.RouteBase
 @Composable
  fun Menu(modifier: Modifier = Modifier,currentScreen:RouteBase,menuActive: MenuActive = viewModel()) {
 
-    LaunchedEffect(key1 = currentScreen) {
+    LaunchedEffect(currentScreen) {
         menuActive.setValue(false)
     }
 
