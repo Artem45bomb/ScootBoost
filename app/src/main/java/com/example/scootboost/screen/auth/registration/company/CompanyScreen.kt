@@ -21,13 +21,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.scootboost.R
 import com.example.scootboost.component.FormInput
 import com.example.scootboost.config.inputRegex
+import com.example.scootboost.data.model.CompanyRegistrationData
 import com.example.scootboost.data.model.UserRegistrationData
 import com.example.scootboost.data.navigateSingleTopTo
+import com.example.scootboost.data.view.RegistrationView
+import com.example.scootboost.data.view.TypeRegistration
 import com.example.scootboost.routes.RouteBase
 
 import com.example.scootboost.routes.Router
@@ -43,7 +47,7 @@ import com.example.scootboost.ui.logo.LogoAuth
 class CompanyRouter:RouterType
 
 @Composable
-fun CompanyScreen(navController: NavHostController,currentScreen:RouteBase) {
+fun CompanyScreen(navController: NavHostController,currentScreen:RouteBase,registrationView: RegistrationView = viewModel()) {
     var email by rememberSaveable {
         mutableStateOf("")
     }
@@ -119,6 +123,12 @@ fun CompanyScreen(navController: NavHostController,currentScreen:RouteBase) {
             PolicyChecked(value = checkPolicy, onChange = { checkPolicy = it })
         }
         BtnBlack(text = "Продолжить", enabled = checkPolicy) {
+            registrationView
+                .setData(
+                    CompanyRegistrationData(email,phone,urlCompany,password,nameCompany),
+                    TypeRegistration.COMPANY
+                )
+            navController.navigateSingleTopTo(SendCode)
         }
     }
 }
