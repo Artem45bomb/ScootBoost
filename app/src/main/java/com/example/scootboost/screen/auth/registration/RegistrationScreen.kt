@@ -128,22 +128,5 @@ fun RegistrationScreen(navController: NavHostController, currentScreen: RouteBas
             registrationView.setData(UserRegistrationData(firstname,lastname,email,password,phone))
             navController.navigateSingleTopTo(SendCode)
         }
-        Column {
-            Text(
-                text = "Или присоединяйтесь с помощью:",
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 10.dp)
-            )
-            BtnIcon(
-                id = R.drawable.google_logo,
-                description = "google icon",
-                colorButton = MaterialTheme.colorScheme.primary
-            ) {
-            }
-        }
-
     }
 }

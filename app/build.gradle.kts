@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.example.scootboost"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.scootboost"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -62,6 +62,15 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.converter.gson)
+    implementation(libs.kotlinx.coroutines.android)
+    //OAuth
+    implementation(libs.androidx.credentials)
+    implementation(libs.credentials.play.services.auth)
+    implementation(libs.googleid)
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+    //
+
     implementation(libs.retrofit)
     implementation(libs.kotlin.reflect)
     implementation(libs.androidx.navigation.compose)

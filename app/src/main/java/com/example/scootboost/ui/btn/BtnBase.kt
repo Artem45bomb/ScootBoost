@@ -39,7 +39,7 @@ fun BtnBase(modifier: Modifier = Modifier,enabled:Boolean = true,text:String, co
 }
 
 @Composable
-fun BtnIcon(modifier: Modifier = Modifier,enabled: Boolean = true,@DrawableRes id:Int,description:String, colorButton:Color, onClick:() -> Unit) {
+fun BtnIcon(modifier: Modifier = Modifier,enabled: Boolean = true,@DrawableRes id:Int,description:String, colorButton:Color, onClick: () -> Unit) {
     Button(
         enabled = enabled,
         colors = ButtonDefaults.buttonColors(containerColor = colorButton),
