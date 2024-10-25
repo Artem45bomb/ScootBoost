@@ -38,6 +38,8 @@ import com.example.scootboost.ui.btn.BtnBlack
 import com.example.scootboost.ui.btn.nav.Back
 import com.example.scootboost.ui.btn.sign.auth.GoogleSignButton
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 
@@ -137,6 +139,7 @@ fun LoginScreen(
                     .build()
                 val credentialManager = CredentialManager.create(context)
 
+
                 coroutineScope.launch {
                     try {
                         val result = credentialManager.getCredential(
@@ -146,6 +149,7 @@ fun LoginScreen(
                         handleSignInGoogle(result)
                     } catch (e: GetCredentialException) {
                         println("auth ${e.message.toString()}")
+
                     }
                 }
             }
