@@ -22,8 +22,7 @@ fun GoogleSignButton(modifier: Modifier = Modifier,onClick:suspend () -> Unit) {
         id = R.drawable.google_logo,
         description = "google icon",
         colorButton = MaterialTheme.colorScheme.primary,
-        onClick = {CoroutineScope(Dispatchers.IO).launch {
-            onClick()
-        }}
+        onClick = {CoroutineScope(Dispatchers.Main).launch{onClick()} }
+
     )
 }
