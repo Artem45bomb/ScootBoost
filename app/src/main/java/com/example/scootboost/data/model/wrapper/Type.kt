@@ -1,13 +1,10 @@
 package com.example.scootboost.data.model.wrapper
 
 
+class RequestException(val code:Int,message:String,body:Any? = null) :Exception(message)
 
 
-data class WrapperDTO<T>(val response:T? = null, val error:Error? = null) {
-    class Error(val code:Int, message:String, body: Any? = null){
-        companion object {
-            @JvmStatic
-            fun badRequest():Error =Error(400,"Bad Request")
-        }
-    }
+sealed class Result<out R>{
+    data class Success<out T>(val body:T) : Result<T>()
+    data class Error<out E : Exception>(val exception:E): Result<E>()
 }
