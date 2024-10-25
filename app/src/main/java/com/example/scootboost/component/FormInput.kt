@@ -52,6 +52,8 @@ fun FormInput(
     placeholder: String = "",
     type:String = "text",
     onChangeValue:(String) -> Unit,
+    setErrorFiled:((String) -> Unit)? = null,
+    errorShow:Boolean = true,
     errorCheck:Regex? = null,
     errorValue: String = "",
     textInfo:String = ""
@@ -68,6 +70,15 @@ fun FormInput(
         isShow = !isShow
     }
 
+    val onValueChange:(String) -> Unit = {
+        val errorMessage = if(errorCheck != null && it.matches(errorCheck)) "" else errorValue
+
+        if(setErrorFiled != null) setErrorFiled(errorMessage)
+        if(errorShow) error = errorMessage
+
+        onChangeValue(it)
+    }
+
     Column(modifier = modifier) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -82,10 +93,7 @@ fun FormInput(
             Input(
                 value = value,
                 textStyle = MaterialTheme.typography.displayLarge.copy(color = Color.Black),
-                onValueChange ={
-                    error = if(errorCheck != null && it.matches(errorCheck)) "" else errorValue
-                    onChangeValue(it)
-                },
+                onValueChange =onValueChange,
                 visualTransformation =when(type){
                     "password" ->if(isShow) VisualTransformation.None else PasswordVisualTransformation()
                     else -> VisualTransformation.None
@@ -140,7 +148,7 @@ fun FormInput(
                 style = MaterialTheme.typography.labelSmall.copy(MaterialTheme.colorScheme.secondary),
                 modifier =  Modifier.padding(top = 4.dp, start = 15.dp)
             )
-        if(error != "")
+        if(error != "" && errorShow)
             Text(error,
                 style = baseRed,
                 modifier =  Modifier.padding(top = 4.dp, start = 15.dp)
