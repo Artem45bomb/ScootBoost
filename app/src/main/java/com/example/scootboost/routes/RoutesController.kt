@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.scootboost.routes.auth.authRoutes
+import com.example.scootboost.routes.techSupport.techSupport
 import com.example.scootboost.screen.HouseScreen
 import com.example.scootboost.ui.menu.Menu
 
@@ -27,6 +28,7 @@ fun RoutesController(
                 HouseScreen(navController)
             }
             authRoutes(navController,currentScreen)
+            techSupport(navController,currentScreen)
         }
         Menu(modifier = Modifier,currentScreen = currentScreen)
     }
