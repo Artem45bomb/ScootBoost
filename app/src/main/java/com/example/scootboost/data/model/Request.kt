@@ -1,4 +1,4 @@
-package com.example.scootboost.data.model.wrapper
+package com.example.scootboost.data.model
 
 
 class RequestException(val code:Int,message:String,body:Any? = null) :Exception(message)

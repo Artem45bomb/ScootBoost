@@ -1,10 +1,7 @@
 package com.example.scootboost.api
 
-import com.example.scootboost.data.model.wrapper.RequestException
-import com.example.scootboost.data.model.wrapper.Result
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.example.scootboost.data.model.RequestException
+import com.example.scootboost.data.model.Result
 import retrofit2.Response
 
 
