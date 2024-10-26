@@ -176,7 +176,7 @@ private fun Item(
             textAlign = TextAlign.Center,
             color = colorScheme.primary,
             text = value.toString(),
-            modifier = Modifier.offset(offsetX)
+            modifier = Modifier.offset(offsetX,0.dp)
         )
     }
 }

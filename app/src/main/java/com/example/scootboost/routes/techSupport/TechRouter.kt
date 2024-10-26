@@ -10,6 +10,6 @@ import com.example.scootboost.screen.techSupport.TechSupportScreen
 
 fun NavGraphBuilder.techSupport(navController: NavHostController, currentScreen: RouteBase) {
     composable(TechSupport.route) {
-        TechSupportScreen(navController = navController, allQuestions =  listOf())
+        TechSupportScreen(navController = navController)
     }
 }

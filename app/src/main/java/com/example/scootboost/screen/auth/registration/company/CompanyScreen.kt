@@ -145,7 +145,7 @@ fun CompanyScreen(
             )
             PolicyChecked(value = checkPolicy, onChange = { checkPolicy = it })
         }
-        BtnBlack(text = "Продолжить", enabled = checkPolicy && error == "") {
+        BtnBlack(text = "Продолжить", enabled = checkPolicy && error == "" && typeLiability != TypeLiability.None) {
             registrationView
                 .setData(
                     CompanyRegistrationData(email, phone, urlCompany, password, nameCompany),
