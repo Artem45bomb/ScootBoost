@@ -1,7 +1,6 @@
-package com.example.scootboost.screen.TechSupport
+package com.example.scootboost.screen.techSupport
 
 
-import TechSupport
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -20,13 +19,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.scootboost.routes.RouteBase
+import com.example.scootboost.component.user.techSupport.QuestionItem
+import com.example.scootboost.data.model.Question
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
 import com.example.scootboost.ui.btn.nav.Back
@@ -35,7 +34,6 @@ import com.example.scootboost.ui.theme.ScootBoostTheme
 @Router(route = "techSupport", groupId = ["techSupport"])
 class TechSupportRouter: RouterType
 
-data class Question(val headerQuestion: String, val answerQuestion: String)
 
 @Composable
 @Preview
@@ -49,21 +47,22 @@ fun TechSupportScreenTest(){
             Question("Как привязать карту к аккаунту?", "только заплатив"),
             Question("Что делать, если устройства нет на месте или оно находится в плохом состоянии?", "Ничего"),
         )
-        TechSupportScreen(arrayOfQuestions)
+        //TechSupportScreen(arrayOfQuestions)
     }
 
 }
 
 @Composable
 fun TechSupportScreen(
-    allQuestions: List<Question>
+    allQuestions: List<Question>,
+    navController: NavHostController
 ){
     var text by remember {
         mutableStateOf("")
     }
 
     Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
-
+        Back(navController = navController)
         Text("Техническая поддержка",
             modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
             style =  MaterialTheme.typography.titleLarge.copy(
@@ -75,7 +74,7 @@ fun TechSupportScreen(
                 MaterialTheme.colorScheme.secondary)
         )
         for(question in allQuestions){
-            TechSupport(modifier = Modifier.padding(vertical = 0.dp),
+            QuestionItem(modifier = Modifier.padding(vertical = 0.dp),
                 question.headerQuestion,
                 question.answerQuestion)
         }

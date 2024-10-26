@@ -20,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.scootboost.R
 import com.example.scootboost.data.view.MenuActive
 import com.example.scootboost.routes.RouteBase
+import com.example.scootboost.routes.TechSupport
 import com.example.scootboost.ui.logo.Logo
 import com.example.scootboost.ui.theme.ScootBoostTheme
 
@@ -59,7 +60,7 @@ fun HeaderMain(modifier: Modifier = Modifier, menuActive: MenuActive = viewModel
                     contentDescription = "world button of app",
                     tint = MaterialTheme.colorScheme.primary)
             }
-            IconButton(onClick = {}){
+            IconButton(onClick = {onNavigation(TechSupport)}){
                 Icon(painter = painterResource(R.drawable.ic_question),
                     contentDescription = "button for question",
                     tint = MaterialTheme.colorScheme.primary)

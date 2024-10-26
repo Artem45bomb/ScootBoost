@@ -16,13 +16,13 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun GoogleSignButton(modifier: Modifier = Modifier,onClick:suspend () -> Unit) {
+fun GoogleSignButton(modifier: Modifier = Modifier,onClick:() -> Unit) {
     BtnIcon(
         modifier,
         id = R.drawable.google_logo,
         description = "google icon",
         colorButton = MaterialTheme.colorScheme.primary,
-        onClick = {CoroutineScope(Dispatchers.Main).launch{onClick()} }
+        onClick = onClick
 
     )
 }

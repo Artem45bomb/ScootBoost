@@ -1,3 +1,5 @@
+package com.example.scootboost.component.user.techSupport
+
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
@@ -6,23 +8,16 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.example.scootboost.routes.Router
-import com.example.scootboost.routes.RouterType
 import com.example.scootboost.ui.theme.ScootBoostTheme
-
-@Router(route = "techSupportQuestion", groupId = ["question"])
-class TechSupportQuestion: RouterType
 
 
 @Composable
-fun TechSupport(modifier: Modifier = Modifier,questionText: String, answerText: String) {
+fun QuestionItem(modifier: Modifier = Modifier, questionText: String, answerText: String) {
     var isClicked by remember { mutableStateOf(false) };
-    Column(modifier = Modifier
+    Column(modifier = modifier
         .padding(horizontal = 8.dp)){
         TextButton(onClick = {
             isClicked = !isClicked;
@@ -50,7 +45,7 @@ fun TechSupport(modifier: Modifier = Modifier,questionText: String, answerText: 
 @Composable
 fun PreviewTechSupport() {
     ScootBoostTheme {
-        TechSupport(modifier = Modifier.padding(horizontal = 4.dp),"Первый", "Второй")
+        QuestionItem(modifier = Modifier.padding(horizontal = 4.dp),"Первый", "Второй")
     }
 
 }

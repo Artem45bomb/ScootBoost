@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -52,6 +53,7 @@ fun LoginScreen(
     navController: NavHostController,
     currentScreen: RouteBase
 ) {
+    val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     var error by rememberSaveable {
         mutableStateOf("")
@@ -105,8 +107,11 @@ fun LoginScreen(
                         setErrorFiled = { error = it })
                     Text(
                         text = error,
-                        style = MaterialTheme.typography.displaySmall.copy(color = Color.Red, fontSize = 12.sp),
-                        modifier =Modifier.padding(start = 10.dp)
+                        style = MaterialTheme.typography.displaySmall.copy(
+                            color = Color.Red,
+                            fontSize = 12.sp
+                        ),
+                        modifier = Modifier.padding(start = 10.dp)
                     )
                 }
             }
@@ -134,17 +139,17 @@ fun LoginScreen(
                     .build()
                 val credentialManager = CredentialManager.create(context)
 
-                coroutineScope {
-                    launch(Dispatchers.Main) {
-                        try {
-                            val result = credentialManager.getCredential(
-                                request = request,
-                                context = context,
-                            )
-                            handleSignInGoogle(result)
-                        } catch (e: GetCredentialException) {
-                            println("auth ${e.message.toString()}")
-                        }
+
+                coroutineScope.launch {
+                    try {
+                        val result = credentialManager.getCredential(
+                            request = request,
+                            context = context,
+                        )
+                        handleSignInGoogle(result)
+                    } catch (e: GetCredentialException) {
+                        println("auth ${e.message.toString()}")
+
                     }
                 }
             }
