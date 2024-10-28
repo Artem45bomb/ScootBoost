@@ -77,7 +77,7 @@ fun RegistrationScreen(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .fillMaxSize()
-            .padding(30.dp)
+            .padding(vertical = 20.dp, horizontal = 30.dp)
     ) {
         Back(navController = navController, modifier = Modifier.align(Alignment.Start))
         Text(

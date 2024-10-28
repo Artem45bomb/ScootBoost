@@ -10,6 +10,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -75,7 +76,13 @@ fun CompanyScreen(
     var typeLiability: TypeLiability by remember {
         mutableStateOf(TypeLiability.None)
     }
+    var isVisible by remember {
+        mutableStateOf(false)
+    }
 
+    LaunchedEffect(email,phone,password,passwordCopy,checkPolicy,urlCompany,nameCompany) {
+        isVisible = false
+    }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(19.dp),
@@ -116,8 +123,8 @@ fun CompanyScreen(
                 errorCheck = Regex(InputRegex.email),
                 setErrorFiled = { error = it }
             )
-            FormLiability {
-
+            FormLiability(value = typeLiability, isShow = isVisible, onChangeShow = {isVisible = it}) {
+                typeLiability = it
             }
             FormInput(
                 value = phone,
