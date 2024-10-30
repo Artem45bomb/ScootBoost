@@ -29,6 +29,7 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.navigation.NavHostController
 import com.example.scootboost.api.auth.oauth.handleSignInGoogle
+import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.FormInput
 import com.example.scootboost.config.InputRegex
 import com.example.scootboost.routes.RouteBase
@@ -38,8 +39,6 @@ import com.example.scootboost.ui.btn.BtnBlack
 import com.example.scootboost.ui.btn.nav.Back
 import com.example.scootboost.ui.btn.sign.auth.GoogleSignButton
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 
@@ -115,7 +114,7 @@ fun LoginScreen(
                     )
                 }
             }
-            BtnBlack(text = "Войти", enabled = error == "") {
+            BtnBlack(text = "Войти", enabled = error.isEmpty() && isNotEmpty(email,password)) {
             }
             Text(text = "Забыли пароль", textDecoration = TextDecoration.Underline)
         }
@@ -149,7 +148,6 @@ fun LoginScreen(
                         handleSignInGoogle(result)
                     } catch (e: GetCredentialException) {
                         println("auth ${e.message.toString()}")
-
                     }
                 }
             }

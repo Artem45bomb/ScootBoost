@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.FormInput
 import com.example.scootboost.component.company.FormLiability
 import com.example.scootboost.config.InputRegex
@@ -152,7 +153,9 @@ fun CompanyScreen(
             )
             PolicyChecked(value = checkPolicy, onChange = { checkPolicy = it })
         }
-        BtnBlack(text = "Продолжить", enabled = checkPolicy && error == "" && typeLiability != TypeLiability.None) {
+        BtnBlack(text = "Продолжить",
+            enabled = checkPolicy && error.isEmpty() && typeLiability != TypeLiability.None && isNotEmpty(email,phone,password,urlCompany,nameCompany)
+        ) {
             registrationView
                 .setData(
                     CompanyRegistrationData(email, phone, urlCompany, password, nameCompany),

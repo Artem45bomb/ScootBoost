@@ -19,3 +19,7 @@ fun <T> Response<T>.handlerRequest(): Result<Any> {
         return Result.Error(RequestException(code,message,body))
     }
 }
+
+fun isNotEmpty(vararg args:String):Boolean{
+    return args.isNotEmpty() && args.all {it.isNotEmpty()}
+}

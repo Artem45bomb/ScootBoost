@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.FormInput
 import com.example.scootboost.config.InputRegex
 import com.example.scootboost.data.model.UserRegistrationData
@@ -125,7 +126,7 @@ fun RegistrationScreen(
             )
             PolicyChecked(value = checkPolicy, onChange = { checkPolicy = it })
         }
-        BtnBlack(text = "Продолжить", enabled = checkPolicy && error == "") {
+        BtnBlack(text = "Продолжить", enabled = checkPolicy && error.isEmpty() && isNotEmpty(lastname,phone,email,firstname,password)) {
             registrationView.setData(
                 UserRegistrationData(
                     firstname, lastname, email, password, phone
