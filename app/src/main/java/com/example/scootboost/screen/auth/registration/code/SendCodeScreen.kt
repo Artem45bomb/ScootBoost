@@ -1,14 +1,16 @@
 package com.example.scootboost.screen.auth.registration.code
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,12 +20,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.scootboost.R
-import com.example.scootboost.component.FormInput
-import com.example.scootboost.data.model.UserRegistrationData
+import com.example.scootboost.component.input.FormCode
+import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.routes.RouteBase
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
@@ -35,13 +38,13 @@ class SendCodeRouter : RouterType
 
 @Composable
 fun SendCodeScreen(modifier: Modifier = Modifier, navController: NavHostController,currentScreen:RouteBase) {
-    var sms by rememberSaveable {
-        mutableStateOf("")
+    var code by rememberSaveable {
+        mutableStateOf("    ")
     }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(57.dp),
         modifier = modifier.fillMaxSize().padding(31.dp)
     ) {
         IconButton(onClick ={navController.popBackStack()}, Modifier.align(Alignment.Start).clip(
@@ -53,9 +56,28 @@ fun SendCodeScreen(modifier: Modifier = Modifier, navController: NavHostControll
                 tint = MaterialTheme.colorScheme.secondary,
             )
         }
-        FormInput(value = sms, onChangeValue ={sms = it}, placeholder = "код подтверждения")
-        BtnBlack(text = "Продолжить", modifier = Modifier.padding(top = 19.dp)) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(17.dp)){
+            Text("Введите код подтверждения:",
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.titleLarge.copy(color = MaterialTheme.colorScheme.secondary),
+                modifier = Modifier.padding(bottom = 40.dp)
+            )
+            FormCode(code= code) {code =it}
+            BtnBlack(text = "Продолжить", modifier = Modifier.padding(top = 19.dp)) {
+
+            }
+
+            Text(
+                "Повторно отправить код",
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.displaySmall,
+                modifier = Modifier.clickable {
+
+                }
+            )
+
 
         }
+
     }
 }

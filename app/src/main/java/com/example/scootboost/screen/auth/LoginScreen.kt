@@ -30,7 +30,7 @@ import androidx.credentials.GetCredentialRequest
 import androidx.navigation.NavHostController
 import com.example.scootboost.api.auth.oauth.handleSignInGoogle
 import com.example.scootboost.api.isNotEmpty
-import com.example.scootboost.component.FormInput
+import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.config.InputRegex
 import com.example.scootboost.routes.RouteBase
 import com.example.scootboost.routes.Router

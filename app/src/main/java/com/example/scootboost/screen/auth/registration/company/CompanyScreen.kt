@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.scootboost.api.isNotEmpty
-import com.example.scootboost.component.FormInput
+import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.component.company.FormLiability
 import com.example.scootboost.config.InputRegex
 import com.example.scootboost.data.model.CompanyRegistrationData

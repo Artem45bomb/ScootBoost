@@ -26,6 +26,7 @@ import com.example.scootboost.routes.Login
 import com.example.scootboost.routes.Registration
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
+import com.example.scootboost.routes.SendCode
 import com.example.scootboost.ui.btn.BtnLight
 import com.example.scootboost.ui.logo.Logo
 import com.example.scootboost.ui.theme.Modak
@@ -78,7 +79,7 @@ fun HouseScreen(navController: NavHostController, modifier: Modifier = Modifier)
                     navController.navigateSingleTopTo(Registration.route)
                 }
                 BtnLight(text = "Продолжить без входа") {
-                    //navController.navigateSingleTopTo()
+                    navController.navigateSingleTopTo(SendCode.route)
                 }
             }
 

@@ -33,7 +33,7 @@ fun HeaderMain(modifier: Modifier = Modifier, menuActive: MenuActive = viewModel
         modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.secondary)
-            .padding(horizontal = 25.dp)
+            .padding(start = 25.dp, end = 25.dp,top = 15.dp)
 
     ){
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -54,9 +54,7 @@ fun HeaderMain(modifier: Modifier = Modifier, menuActive: MenuActive = viewModel
 
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             IconButton(onClick = {}){
-                Icon(
-                    modifier = Modifier.padding(0.dp),
-                    painter = painterResource(R.drawable.ic_world),
+                Icon(painter = painterResource(R.drawable.ic_world),
                     contentDescription = "world button of app",
                     tint = MaterialTheme.colorScheme.primary)
             }
