@@ -3,6 +3,7 @@ package com.example.scootboost.screen.auth
 
 import android.credentials.GetCredentialException
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
+import androidx.credentials.exceptions.NoCredentialException
 import androidx.navigation.NavHostController
 import com.example.scootboost.api.auth.oauth.handleSignInGoogle
 import com.example.scootboost.api.isNotEmpty
@@ -40,6 +42,8 @@ import com.example.scootboost.ui.btn.nav.Back
 import com.example.scootboost.ui.btn.sign.auth.GoogleSignButton
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import kotlinx.coroutines.launch
+import java.security.MessageDigest
+import java.util.UUID
 
 
 @Router(route = "login", groupId = ["auth"])
@@ -128,15 +132,23 @@ fun LoginScreen(
                     .padding(vertical = 10.dp)
             )
             GoogleSignButton {
+                val rawNonce = UUID.randomUUID().toString()
+                val bytes = rawNonce.toByteArray()
+                val md = MessageDigest.getInstance("SHA-256")
+                val digest = md.digest(bytes)
+                val hashedNonce = digest.fold(""){str,it ->str+"%02x".format(it)}
+
+                val credentialManager = CredentialManager.create(context)
                 val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
                     .setFilterByAuthorizedAccounts(false)
-                    .setServerClientId("656212445191-t8ep9v29lors27f2rk47as80genf2c06.apps.googleusercontent.com")
+                    .setServerClientId("656212445191-ibg62nji05uh3qdsf77q4cc6k0cdlst0.apps.googleusercontent.com")
+                    .setNonce(hashedNonce)
                     .build()
 
                 val request: GetCredentialRequest = GetCredentialRequest.Builder()
                     .addCredentialOption(googleIdOption)
                     .build()
-                val credentialManager = CredentialManager.create(context)
+
 
 
                 coroutineScope.launch {
@@ -146,7 +158,11 @@ fun LoginScreen(
                             context = context,
                         )
                         handleSignInGoogle(result)
-                    } catch (e: GetCredentialException) {
+                    }
+                    catch (e: NoCredentialException) {
+                        Log.e("CredentialManager", "No credential available", e)
+                    }
+                    catch (e: GetCredentialException) {
                         println("auth ${e.message.toString()}")
                     }
                 }
