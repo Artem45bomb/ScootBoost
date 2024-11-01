@@ -2,6 +2,9 @@ package com.example.scootboost.component.user.techSupport
 
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.indication
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
@@ -20,19 +23,19 @@ fun QuestionItem(modifier: Modifier = Modifier, questionText: String, answerText
     Column(modifier = modifier
         .padding(horizontal = 8.dp)){
         TextButton(onClick = {
-            isClicked = !isClicked;
-        },
+            isClicked = !isClicked; },
             modifier = Modifier.padding(horizontal = 4.dp)){
+
             Text(questionText,
                 style = MaterialTheme.typography.displayMedium.copy(
                     MaterialTheme.colorScheme.secondary)
             )
-
         }
+
         AnimatedVisibility(isClicked){
             Text(answerText,
                 modifier = Modifier.padding(top = 4.dp, start = 14.dp, bottom = 4.dp, end = 0.dp),
-                style = MaterialTheme.typography.displaySmall.copy(
+                style = MaterialTheme.typography.displayMedium.copy(
                     MaterialTheme.colorScheme.primary))
         }
 
