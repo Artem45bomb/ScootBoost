@@ -14,6 +14,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -41,6 +42,9 @@ fun SendCodeScreen(modifier: Modifier = Modifier, navController: NavHostControll
     var code by rememberSaveable {
         mutableStateOf("    ")
     }
+    var isError by rememberSaveable {
+        mutableStateOf(false)
+    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -62,9 +66,9 @@ fun SendCodeScreen(modifier: Modifier = Modifier, navController: NavHostControll
                 style = MaterialTheme.typography.titleLarge.copy(color = MaterialTheme.colorScheme.secondary),
                 modifier = Modifier.padding(bottom = 40.dp)
             )
-            FormCode(code= code) {code =it}
+            FormCode(code= code, isError=isError) {code =it}
             BtnBlack(text = "Продолжить", modifier = Modifier.padding(top = 19.dp)) {
-
+                isError = !isError
             }
 
             Text(
