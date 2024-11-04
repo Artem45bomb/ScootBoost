@@ -21,6 +21,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -34,6 +36,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -58,6 +62,9 @@ fun TechSupportScreen(
     var text by remember {
         mutableStateOf("")
     }
+    val scrollState = rememberLazyListState()
+    var questionPosition by remember { mutableStateOf(0) }
+    var shouldScroll by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -158,17 +165,20 @@ fun TechSupportScreen(
             .background(color = MaterialTheme.colorScheme.background)
     ) {
         LazyColumn(
+            state = scrollState,
             contentPadding = PaddingValues(vertical = 10.dp),
             modifier = Modifier
                 .padding(it)
         ) {
-            items(viewQuestions.questions) {
+            items(viewQuestions.questions) { question ->
                 QuestionItem(
-                    modifier = Modifier.padding(vertical = 0.dp),
-                    it.headerQuestion,
-                    it.answerQuestion,
+                    modifier = Modifier
+                        .padding(vertical = 0.dp),
+                    question.headerQuestion,
+                    question.answerQuestion,
                 )
             }
+
         }
     }
 }
