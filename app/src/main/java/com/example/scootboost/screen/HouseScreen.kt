@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.scootboost.R
 import com.example.scootboost.data.navigateSingleTopTo
+import com.example.scootboost.data.navigateToSendCode
 import com.example.scootboost.routes.Login
 import com.example.scootboost.routes.Registration
 import com.example.scootboost.routes.Router
@@ -79,7 +80,7 @@ fun HouseScreen(navController: NavHostController, modifier: Modifier = Modifier)
                     navController.navigateSingleTopTo(Registration.route)
                 }
                 BtnLight(text = "Продолжить без входа") {
-                    navController.navigateSingleTopTo(SendCode.route)
+                    navController.navigateToSendCode(1)
                 }
             }
 

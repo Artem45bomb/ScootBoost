@@ -34,18 +34,18 @@ import com.example.scootboost.routes.RouterType
 import com.example.scootboost.ui.btn.BtnBlack
 
 
-@Router(route = "sendCodeScreen", groupId = ["auth"])
+@Router(route = "sendCodeScreen/{userId}", groupId = ["auth"])
 class SendCodeRouter : RouterType
 
 @Composable
-fun SendCodeScreen(modifier: Modifier = Modifier, navController: NavHostController,currentScreen:RouteBase) {
+fun SendCodeScreen(modifier: Modifier = Modifier,userId:Int,navController: NavHostController,currentScreen:RouteBase) {
     var code by rememberSaveable {
         mutableStateOf("    ")
     }
     var isError by rememberSaveable {
         mutableStateOf(false)
     }
-
+    println(userId)
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(57.dp),

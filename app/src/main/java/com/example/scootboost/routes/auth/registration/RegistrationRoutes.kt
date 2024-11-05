@@ -24,7 +24,8 @@ fun NavGraphBuilder.registration(navController: NavHostController, currentScreen
     composable(
         route = SendCode.route
     ){
-        SendCodeScreen(navController = navController, currentScreen = currentScreen)
+        val userId = it.arguments?.getString("userId")!!.toInt()
+        SendCodeScreen(userId= userId,navController = navController, currentScreen = currentScreen)
     }
     composable(
         route = RegistrationCompany.route,

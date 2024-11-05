@@ -22,3 +22,7 @@ fun NavHostController.navigateSingleTopTo(route:String){
 fun NavHostController.navigateSingleTopTo(route:RouteBase){
     navigateSingleTopTo(route.route)
 }
+
+fun NavHostController.navigateToSendCode(userId:Int){
+    navigateSingleTopTo("sendCodeScreen/$userId")
+}
