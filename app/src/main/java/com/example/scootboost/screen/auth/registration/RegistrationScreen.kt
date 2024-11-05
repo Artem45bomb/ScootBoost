@@ -20,10 +20,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.scootboost.api.auth.request.registration
 import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.config.InputRegex
+import com.example.scootboost.data.model.SignUpDTO
 import com.example.scootboost.data.model.UserRegistrationData
+import com.example.scootboost.data.model.UserSettings
 import com.example.scootboost.data.navigateSingleTopTo
 import com.example.scootboost.data.view.RegistrationView
 import com.example.scootboost.routes.RouteBase
@@ -35,6 +38,9 @@ import com.example.scootboost.ui.auth.nav.BtnNav
 import com.example.scootboost.ui.btn.BtnBlack
 import com.example.scootboost.ui.btn.nav.Back
 import com.example.scootboost.ui.logo.LogoAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @Router(route = "registration", groupId = ["auth"])
@@ -51,6 +57,9 @@ fun RegistrationScreen(
         mutableStateOf("")
     }
     var lastname by rememberSaveable {
+        mutableStateOf("")
+    }
+    var username by rememberSaveable {
         mutableStateOf("")
     }
     var phone by rememberSaveable {
@@ -90,6 +99,12 @@ fun RegistrationScreen(
         BtnNav(navController = navController, currentRoute = currentScreen.route)
         LogoAuth(Modifier.width(90.dp))
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            FormInput(
+                value = username,
+                onChangeValue = { username = it },
+                placeholder = "username",
+                setErrorFiled = { error = it }
+            )
             FormInput(value = firstname, onChangeValue = { firstname = it }, placeholder = "Имя")
             FormInput(value = lastname, onChangeValue = { lastname = it }, placeholder = "Фамилия")
             FormInput(
@@ -127,12 +142,20 @@ fun RegistrationScreen(
             PolicyChecked(value = checkPolicy, onChange = { checkPolicy = it })
         }
         BtnBlack(text = "Продолжить", enabled = checkPolicy && error.isEmpty() && isNotEmpty(lastname,phone,email,firstname,password)) {
-            registrationView.setData(
-                UserRegistrationData(
-                    firstname, lastname, email, password, phone
-                )
-            )
-            navController.navigateSingleTopTo(SendCode)
+            CoroutineScope(Dispatchers.IO).launch {
+                registration(SignUpDTO(
+                    username = username,
+                    email = email,
+                    password = password,
+                    type = SignUpDTO.Type.USER,
+                    userSettings = UserSettings(
+                        lastName = lastname,
+                        firstName =firstname
+                    ),
+                    companySettings = null
+                ))
+            }
+            //navController.navigateSingleTopTo(SendCode)
         }
     }
 }
