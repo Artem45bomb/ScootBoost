@@ -6,5 +6,5 @@ class RequestException(val code:Int,message:String,body:Any? = null) :Exception(
 
 sealed class Result<out R>{
     data class Success<out T>(val body:T) : Result<T>()
-    data class Error<out E : Exception>(val exception:E): Result<E>()
+    data class Error<out T:Exception>(val exception:T): Result<Any>()
 }

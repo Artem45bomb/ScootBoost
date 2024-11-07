@@ -31,9 +31,14 @@ import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.NoCredentialException
 import androidx.navigation.NavHostController
 import com.example.scootboost.api.auth.oauth.handleSignInGoogle
+import com.example.scootboost.api.auth.request.loginEmail
 import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.config.InputRegex
+import com.example.scootboost.data.model.JwtResponseDTO
+import com.example.scootboost.data.model.RequestException
+import com.example.scootboost.data.model.Result
+import com.example.scootboost.data.model.SignInEmailDTO
 import com.example.scootboost.routes.RouteBase
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
@@ -41,6 +46,8 @@ import com.example.scootboost.ui.btn.BtnBlack
 import com.example.scootboost.ui.btn.nav.Back
 import com.example.scootboost.ui.btn.sign.auth.GoogleSignButton
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
 import java.util.UUID
@@ -66,6 +73,20 @@ fun LoginScreen(
     }
     var password by rememberSaveable {
         mutableStateOf("")
+    }
+
+    fun login(){
+        CoroutineScope(Dispatchers.IO).launch{
+            try {
+                val response = loginEmail(SignInEmailDTO(email, password))
+                if(response is Result.Success<JwtResponseDTO>){
+                    println("accessToken=${response.body.accessToken};refreshToken=${response.body.token}")
+                }
+            }
+            catch(ex:RequestException){
+                println(ex.message)
+            }
+        }
     }
 
     Column(
@@ -118,8 +139,7 @@ fun LoginScreen(
                     )
                 }
             }
-            BtnBlack(text = "Войти", enabled = error.isEmpty() && isNotEmpty(email,password)) {
-            }
+            BtnBlack(text = "Войти", enabled = error.isEmpty() && isNotEmpty(email,password), onClick = {login()})
             Text(text = "Забыли пароль", textDecoration = TextDecoration.Underline)
         }
         Column {

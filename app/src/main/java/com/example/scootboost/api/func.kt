@@ -8,7 +8,7 @@ import retrofit2.Response
 
 
 
-fun <T> Response<T>.handlerRequest(): Result<Any> {
+fun <T> Response<T>.handlerRequest(): Result<T> {
     if(this.isSuccessful){
         return Result.Success(this.body()!!)
     }
@@ -16,10 +16,13 @@ fun <T> Response<T>.handlerRequest(): Result<Any> {
         val code = this.code()
         val message = this.message()
         val body = this.errorBody()
-        return Result.Error(RequestException(code,message,body))
+        throw RequestException(code,message,body)
     }
 }
 
 fun isNotEmpty(vararg args:String):Boolean{
     return args.isNotEmpty() && args.all {it.isNotEmpty()}
 }
+
+
+

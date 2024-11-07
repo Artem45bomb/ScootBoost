@@ -9,7 +9,6 @@ plugins {
 android {
     namespace = "com.example.scootboost"
     compileSdk = 35
-
     defaultConfig {
         applicationId = "com.example.scootboost"
         minSdk = 24
@@ -30,6 +29,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+
         }
     }
     compileOptions {

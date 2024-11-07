@@ -3,6 +3,7 @@ package com.example.scootboost.api.auth.request
 import com.example.scootboost.api.auth.service.AuthService
 import com.example.scootboost.api.handlerRequest
 import com.example.scootboost.config.RetrofitInstance
+import com.example.scootboost.data.model.JwtResponseDTO
 import com.example.scootboost.data.model.SignInDTO
 import com.example.scootboost.data.model.SignInEmailDTO
 import com.example.scootboost.data.model.SignUpDTO
