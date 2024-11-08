@@ -27,11 +27,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.credentials.CredentialManager
+import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
+import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.NoCredentialException
 import androidx.navigation.NavHostController
-import com.example.scootboost.api.auth.oauth.handleSignInGoogle
 import com.example.scootboost.api.auth.request.loginEmail
+import com.example.scootboost.api.auth.request.loginGoogle
 import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.config.InputRegex
@@ -39,6 +41,7 @@ import com.example.scootboost.data.model.JwtResponseDTO
 import com.example.scootboost.data.model.RequestException
 import com.example.scootboost.data.model.Result
 import com.example.scootboost.data.model.SignInEmailDTO
+import com.example.scootboost.data.model.SignInGoogleId
 import com.example.scootboost.routes.RouteBase
 import com.example.scootboost.routes.Router
 import com.example.scootboost.routes.RouterType
@@ -46,6 +49,8 @@ import com.example.scootboost.ui.btn.BtnBlack
 import com.example.scootboost.ui.btn.nav.Back
 import com.example.scootboost.ui.btn.sign.auth.GoogleSignButton
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -85,6 +90,37 @@ fun LoginScreen(
             }
             catch(ex:RequestException){
                 println(ex.message)
+            }
+        }
+    }
+
+    fun handleSignInGoogle(result: GetCredentialResponse) {
+        // Handle the successfully returned credential.
+        when (val credential = result.credential) {
+            is CustomCredential -> {
+                if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+                    try {
+                        // Use googleIdTokenCredential and extract id to validate and
+                        // authenticate on your server.
+                        val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                        println("google id:${googleIdTokenCredential.idToken}")
+                        CoroutineScope(Dispatchers.IO).launch {
+                            loginGoogle(SignInGoogleId(googleIdTokenCredential.idToken))
+                        }
+
+                        // TODO: Send [googleIdTokenCredential.idToken] to your backend
+                    } catch (e: GoogleIdTokenParsingException) {
+                        Log.e("MainActivity", "handleSignIn:", e)
+                    }
+                } else {
+                    // Catch any unrecognized custom credential type here.
+                    Log.e("MainActivity", "Unexpected type of credential")
+                }
+            }
+
+            else -> {
+                // Catch any unrecognized credential type here.
+                Log.e("MainActivity", "Unexpected type of credential")
             }
         }
     }
