@@ -39,6 +39,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -76,14 +77,14 @@ fun TechSupportScreen(
                     .align(Alignment.Start)
                     .padding(horizontal = 4.dp, vertical = 8.dp))
                 Text(
-                    "Техническая поддержка",
+                    text = stringResource(R.string.text_techsupport),
                     style = MaterialTheme.typography.titleLarge.copy(
                         MaterialTheme.colorScheme.secondary
                     ),
                     modifier = Modifier.padding(top = 12.dp)
                 )
                 Text(
-                    "Часто задаваемые вопросы:",
+                    text = stringResource(R.string.text_FAQ),
                     modifier = Modifier.padding(
                         top = 44.dp,
                         bottom = 26.dp,
@@ -100,7 +101,7 @@ fun TechSupportScreen(
         bottomBar = {
             Column(verticalArrangement = Arrangement.Bottom) {
                 Text(
-                    "Свой вариант вопроса:",
+                    text = stringResource(R.string.text_your_question),
                     modifier = Modifier.padding(vertical = 8.dp, horizontal = 24.dp),
                     style = MaterialTheme.typography.displayMedium.copy(
                         MaterialTheme.colorScheme.secondary
@@ -128,7 +129,7 @@ fun TechSupportScreen(
                     textStyle = MaterialTheme.typography.displayMedium.copy(color = MaterialTheme.colorScheme.secondary, lineHeight = 23.sp),
                     placeholder = {
                         Text(
-                            text = "Ввод",
+                            text = stringResource(R.string.text_input),
                             style = MaterialTheme.typography.displayMedium.copy(
                                 color = MaterialTheme.colorScheme.primary
                             )

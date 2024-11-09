@@ -25,10 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.scootboost.R
 import com.example.scootboost.data.navigateSingleTopTo
 import com.example.scootboost.routes.Registration
 import com.example.scootboost.routes.RegistrationCompany
@@ -40,7 +42,7 @@ fun BtnNav(modifier: Modifier = Modifier,navController: NavHostController,curren
         Row(modifier =Modifier.fillMaxWidth()) {
                 BtnNavItem(
                     shape = RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp),
-                    text = "Пользователь",
+                    text = stringResource(R.string.text_user),
                     isActive = currentRoute == Registration.route,
 
                 ) {
@@ -48,7 +50,7 @@ fun BtnNav(modifier: Modifier = Modifier,navController: NavHostController,curren
                 }
                 BtnNavItem(
                     shape = RoundedCornerShape(topEnd = 20.dp, bottomEnd = 20.dp),
-                    text = "Компания",
+                    text = stringResource(R.string.text_company),
                     isActive = currentRoute != Registration.route,
                 ) {
                     navController.navigateSingleTopTo(RegistrationCompany.route)

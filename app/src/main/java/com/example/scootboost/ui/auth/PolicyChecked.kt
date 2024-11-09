@@ -8,6 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.scootboost.R
 
 
 @Composable
@@ -22,7 +24,7 @@ fun PolicyChecked(value:Boolean,onChange:(Boolean) -> Unit,modifier: Modifier = 
                 )
             )
             Text(
-                text = "Ознакомлен с политикой конфиденциальности",
+                text = stringResource(R.string.checkbox_confidentiality_policy),
                 style = typography.labelSmall.copy(colorScheme.secondary)
             )
         }

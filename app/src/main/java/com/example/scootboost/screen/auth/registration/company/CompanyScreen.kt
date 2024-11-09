@@ -18,10 +18,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.scootboost.R
 import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.component.company.FormLiability
@@ -95,7 +97,7 @@ fun CompanyScreen(
     ) {
         Back(navController = navController, modifier = Modifier.align(Alignment.Start))
         Text(
-            "Регистрация",
+            text = stringResource(R.string.text_registration),
             style = MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.secondary),
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 10.dp)
@@ -106,21 +108,21 @@ fun CompanyScreen(
             FormInput(
                 value = nameCompany,
                 onChangeValue = { nameCompany = it },
-                placeholder = "Наименование компании"
+                placeholder = stringResource(R.string.text_company_name),
             )
             FormInput(
                 value = urlCompany,
                 setErrorFiled = {error = it},
                 onChangeValue = { urlCompany = it },
-                placeholder = "URL адрес компании",
+                placeholder = stringResource(R.string.text_url_company),
                 errorCheck = Regex(InputRegex.url),
-                errorValue = "Некоректный ввод url",
+                errorValue = stringResource(R.string.error_url_company),
             )
             FormInput(
                 value = email,
                 onChangeValue = { email = it },
-                placeholder = "Email",
-                errorValue = "Некоректный ввод почты",
+                placeholder = stringResource(R.string.text_email),
+                errorValue = stringResource(R.string.error_email),
                 errorCheck = Regex(InputRegex.email),
                 setErrorFiled = { error = it }
             )
@@ -131,7 +133,7 @@ fun CompanyScreen(
                 value = phone,
                 onChangeValue = { phone = it },
                 type = "phone",
-                placeholder = "Телефон"
+                placeholder = stringResource(R.string.text_telephone),
             )
             FormInput(
                 value = password,
@@ -139,8 +141,8 @@ fun CompanyScreen(
                 type = "password",
                 setErrorFiled = {error = it},
                 errorCheck = Regex(InputRegex.password),
-                errorValue = "Пароль должен начинаться от 8 символов и содержать a-Z или 1-#",
-                placeholder = "Придумайте пароль"
+                errorValue = stringResource(R.string.error_invalid_password),
+                placeholder = stringResource(R.string.text_make_password),
             )
             FormInput(
                 value = passwordCopy,
@@ -148,12 +150,12 @@ fun CompanyScreen(
                 type = "password",
                 errorCheck = Regex("^$password$"),
                 setErrorFiled = {error = it},
-                errorValue = "The password must match",
-                placeholder = "Подтвердите пароль"
+                errorValue = stringResource(R.string.error_password_match),
+                placeholder = stringResource(R.string.text_confirm_password),
             )
             PolicyChecked(value = checkPolicy, onChange = { checkPolicy = it })
         }
-        BtnBlack(text = "Продолжить",
+        BtnBlack(text = stringResource(R.string.btn_continue),
             enabled = checkPolicy && error.isEmpty() && typeLiability != TypeLiability.None && isNotEmpty(email,phone,password,urlCompany,nameCompany)
         ) {
             registrationView

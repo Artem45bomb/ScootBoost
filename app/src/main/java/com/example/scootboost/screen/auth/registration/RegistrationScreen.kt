@@ -16,10 +16,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.scootboost.R
 import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.input.FormInput
 import com.example.scootboost.config.InputRegex
@@ -82,7 +84,7 @@ fun RegistrationScreen(
     ) {
         Back(navController = navController, modifier = Modifier.align(Alignment.Start))
         Text(
-            "Регистрация",
+            text = stringResource(R.string.text_registration),
             style = MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.secondary),
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 10.dp)
@@ -90,13 +92,13 @@ fun RegistrationScreen(
         BtnNav(navController = navController, currentRoute = currentScreen.route)
         LogoAuth(Modifier.width(90.dp))
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            FormInput(value = firstname, onChangeValue = { firstname = it }, placeholder = "Имя")
-            FormInput(value = lastname, onChangeValue = { lastname = it }, placeholder = "Фамилия")
+            FormInput(value = firstname, onChangeValue = { firstname = it }, placeholder = stringResource(R.string.text_name))
+            FormInput(value = lastname, onChangeValue = { lastname = it }, placeholder = stringResource(R.string.text_surname))
             FormInput(
                 value = email,
                 onChangeValue = { email = it },
-                placeholder = "Email",
-                errorValue = "Некоректный ввод почты",
+                placeholder = stringResource(R.string.text_email),
+                errorValue = stringResource(R.string.error_invalid_email),
                 errorCheck = Regex(InputRegex.email),
                 setErrorFiled = { error = it }
             )
@@ -104,7 +106,7 @@ fun RegistrationScreen(
                 value = phone,
                 onChangeValue = { phone = it },
                 type = "phone",
-                placeholder = "Телефон"
+                placeholder = stringResource(R.string.text_telephone),
             )
             FormInput(
                 value = password,
@@ -112,8 +114,8 @@ fun RegistrationScreen(
                 type = "password",
                 setErrorFiled = { error = it },
                 errorCheck = Regex(InputRegex.password),
-                errorValue = "Пароль должен начинаться от 8 символов и содержать a-Z",
-                placeholder = "Придумайте пароль"
+                errorValue = stringResource(R.string.error_invalid_password),
+                placeholder = stringResource(R.string.text_make_password),
             )
             FormInput(
                 value = passwordCopy,
@@ -121,12 +123,12 @@ fun RegistrationScreen(
                 type = "password",
                 setErrorFiled = { error = it },
                 errorCheck = Regex("^$password$"),
-                errorValue = "The password must match",
-                placeholder = "Подтвердите пароль"
+                errorValue = stringResource(R.string.error_password_match),
+                placeholder = stringResource(R.string.text_confirm_password),
             )
             PolicyChecked(value = checkPolicy, onChange = { checkPolicy = it })
         }
-        BtnBlack(text = "Продолжить", enabled = checkPolicy && error.isEmpty() && isNotEmpty(lastname,phone,email,firstname,password)) {
+        BtnBlack(text = stringResource(R.string.btn_continue), enabled = checkPolicy && error.isEmpty() && isNotEmpty(lastname,phone,email,firstname,password)) {
             registrationView.setData(
                 UserRegistrationData(
                     firstname, lastname, email, password, phone

@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -61,18 +62,18 @@ fun SendCodeScreen(modifier: Modifier = Modifier, navController: NavHostControll
             )
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(17.dp)){
-            Text("Введите код подтверждения:",
+            Text(text = stringResource(R.string.text_confirmation_code),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleLarge.copy(color = MaterialTheme.colorScheme.secondary),
                 modifier = Modifier.padding(bottom = 40.dp)
             )
             FormCode(code= code, isError=isError) {code =it}
-            BtnBlack(text = "Продолжить", modifier = Modifier.padding(top = 19.dp)) {
+            BtnBlack(text = stringResource(R.string.btn_continue), modifier = Modifier.padding(top = 19.dp)) {
                 isError = !isError
             }
 
             Text(
-                "Повторно отправить код",
+                text = stringResource(R.string.btn_resend_code),
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier.clickable {

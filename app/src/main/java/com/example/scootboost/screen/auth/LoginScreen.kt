@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,7 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.NoCredentialException
 import androidx.navigation.NavHostController
+import com.example.scootboost.R
 import com.example.scootboost.api.auth.oauth.handleSignInGoogle
 import com.example.scootboost.api.isNotEmpty
 import com.example.scootboost.component.input.FormInput
@@ -86,7 +88,7 @@ fun LoginScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "Вход",
+                    text = stringResource(R.string.text_login),
                     style = MaterialTheme.typography.titleLarge.copy(MaterialTheme.colorScheme.secondary),
                     textAlign = TextAlign.Center
                 )
@@ -94,9 +96,9 @@ fun LoginScreen(
                     FormInput(
                         value = email,
                         onChangeValue = { email = it },
-                        placeholder = "Email",
+                        placeholder = stringResource(R.string.text_email),
                         errorShow = false,
-                        errorValue = "Некоректный ввод почты",
+                        errorValue = stringResource(R.string.error_invalid_email),
                         errorCheck = Regex(InputRegex.email),
                         setErrorFiled = { error = it })
                     FormInput(
@@ -104,8 +106,8 @@ fun LoginScreen(
                         onChangeValue = { password = it },
                         type = "password",
                         errorShow = false,
-                        placeholder = "Пароль",
-                        errorValue = "Пароль должен начинаться от 8 символов и содержать a-Z",
+                        placeholder = stringResource(R.string.text_password),
+                        errorValue = stringResource(R.string.error_invalid_password),
                         errorCheck = Regex(InputRegex.password),
                         setErrorFiled = { error = it })
                     Text(
@@ -118,13 +120,13 @@ fun LoginScreen(
                     )
                 }
             }
-            BtnBlack(text = "Войти", enabled = error.isEmpty() && isNotEmpty(email,password)) {
+            BtnBlack(text = stringResource(R.string.sign_btn_signin), enabled = error.isEmpty() && isNotEmpty(email,password)) {
             }
-            Text(text = "Забыли пароль", textDecoration = TextDecoration.Underline)
+            Text(text = stringResource(R.string.text_forgot_password), textDecoration = TextDecoration.Underline)
         }
         Column {
             Text(
-                text = "присоединяйтесь с помощью:",
+                text = stringResource(R.string.text_join_with),
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier
