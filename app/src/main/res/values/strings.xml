@@ -1,38 +1,46 @@
 <resources>
     <string name="app_name" translatable="false">ScootBoost</string>
+
     <string name="settings_profile_item">Profile</string>
     <string name="settings_about_us_item">About us</string>
     <string name="settings_item">Settings</string>
-    <string name="sign_btn_register">Register</string>
-    <string name="sign_btn_signin">Sign in</string>
-    <string name="sign_btn_without_signin">Continue without sign in</string>
+
     <string name="text_login">login</string>
     <string name="text_email">Email</string>
-    <string name="error_invalid_email">Incorrect email entry</string>
     <string name="text_password">Password</string>
-    <string name="error_invalid_password">Password must start with 8 characters and contain a-Z</string>
+    <string name="text_make_password">Make up a password</string>
+    <string name="text_confirm_password">Confirm password</string>
     <string name="text_forgot_password">Forgot your password</string>
     <string name="text_join_with">Join in with the help of:</string>
     <string name="text_confirmation_code">Enter the confirmation code:</string>
-    <string name="btn_continue">Continue</string>
-    <string name="btn_resend_code">Resend code</string>
     <string name="text_registration">Registration</string>
     <string name="text_company_name">Company name</string>
     <string name="text_url_company">URL address of the company</string>
-    <string name="error_url_company">Incorrect URL entry</string>
-    <string name="error_email">Incorrect mail entry</string>
+    <string name="text_company">Company</string>
+    <string name="text_user">User</string>
     <string name="text_telephone">Tel</string>
-    <string name="text_make_password">Make up a password</string>
-    <string name="error_password_match">The password must match</string>
-    <string name="text_confirm_password">Confirm password</string>
     <string name="text_name">Name</string>
     <string name="text_surname">Surname</string>
     <string name="text_techsupport">Technical support</string>
     <string name="text_FAQ">FAQ:</string>
     <string name="text_your_question">Your version of the question:</string>
     <string name="text_input">Input</string>
-    <string name="checkbox_confidentiality_policy">Familiar with the confidentiality policy</string>
-    <string name="text_user">User</string>
-    <string name="text_company">Company</string>
+
     <string name="text_privacy_policy">Privacy Policy ⓘ</string>
+
+    <string name="sign_btn_register">Register</string>
+    <string name="sign_btn_signin">Sign in</string>
+    <string name="sign_btn_without_signin">Continue without sign in</string>
+
+    <string name="error_invalid_email">Incorrect email entry</string>
+    <string name="error_invalid_password">Password must start with 8 characters and contain a-Z</string>
+    <string name="error_url_company">Incorrect URL entry</string>
+    <string name="error_email">Incorrect mail entry</string>
+    <string name="error_password_match">The password must match</string>
+
+    <string name="btn_continue">Continue</string>
+    <string name="btn_resend_code">Resend code</string>
+
+    <string name="checkbox_confidentiality_policy">Familiar with the confidentiality policy</string>
+
 </resources>

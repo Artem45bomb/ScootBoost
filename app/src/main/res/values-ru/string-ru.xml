@@ -3,37 +3,43 @@
     <string name="settings_profile_item">Профиль</string>
     <string name="settings_about_us_item">О нас</string>
     <string name="settings_item">Настройки</string>
-    <string name="sign_btn_register">Зарегистрироваться</string>
-    <string name="sign_btn_signin">Войти</string>
-    <string name="sign_btn_without_signin">Продолжить без входа</string>
+
     <string name="text_login">Войти</string>
     <string name="text_email">Email</string>
-    <string name="error_invalid_email">Некорректный ввод почты</string>
     <string name="text_password">Пароль</string>
-    <string name="error_invalid_password">Пароль должен начинаться от 8 символов и содержать a-Z</string>
+    <string name="text_make_password">Придумайте пароль</string>
+    <string name="text_confirm_password">Подтвердите пароль</string>
     <string name="text_forgot_password">Забыли пароль</string>
     <string name="text_join_with">Присоединяйтесь с помощью:</string>
     <string name="text_confirmation_code">Введите код подтверждения:</string>
-    <string name="btn_continue">Продолжить</string>
-    <string name="btn_resend_code">Повторно отправить код</string>
     <string name="text_registration">Регистрация</string>
     <string name="text_company_name">Наименование компании</string>
     <string name="text_url_company">URL адрес компании</string>
-    <string name="error_url_company">Некорректный ввод URL</string>
-    <string name="error_email">Некорректный ввод почты</string>
+    <string name="text_company">Компания</string>
+    <string name="text_user">Пользователь</string>
     <string name="text_telephone">Телефон</string>
-    <string name="text_make_password">Придумайте пароль</string>
-    <string name="error_password_match">Пароль должен совпадать</string>
-    <string name="text_confirm_password">Подтвердите пароль</string>
     <string name="text_name">Имя</string>
     <string name="text_surname">Фамилия</string>
     <string name="text_techsupport">Техническая поддержка</string>
     <string name="text_FAQ">Часто задаваемые вопросы:</string>
     <string name="text_your_question">Свой вариант вопроса:</string>
     <string name="text_input">Ввод</string>
-    <string name="checkbox_confidentiality_policy">Ознакомлен с политикой конфидициальности</string>
-    <string name="text_user">Пользователь</string>
-    <string name="text_company">Компания</string>
     <string name="text_privacy_policy">Политика конфидициальности ⓘ</string>
+
+    <string name="sign_btn_register">Зарегистрироваться</string>
+    <string name="sign_btn_signin">Войти</string>
+    <string name="sign_btn_without_signin">Продолжить без входа</string>
+
+    <string name="error_invalid_email">Некорректный ввод почты</string>
+    <string name="error_invalid_password">Пароль должен начинаться от 8 символов и содержать a-Z</string>
+    <string name="error_url_company">Некорректный ввод URL</string>
+    <string name="error_email">Некорректный ввод почты</string>
+    <string name="error_password_match">Пароль должен совпадать</string>
+
+    <string name="btn_continue">Продолжить</string>
+    <string name="btn_resend_code">Повторно отправить код</string>
+
+    <string name="checkbox_confidentiality_policy">Ознакомлен с политикой конфидициальности</string>
+
 
 </resources>
